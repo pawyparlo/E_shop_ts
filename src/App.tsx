@@ -19,19 +19,19 @@ function App() {
           <Route path="/categories" element={<Store />} />
           <Route
             path="/categories/books"
-            element={<CategoryItemPage currentName={"Books"} />}
+            element={<CategoryItemPage categoryName={"Books"} />}
           />
           <Route
             path="/categories/fruits"
-            element={<CategoryItemPage currentName={"Fruits"} />}
+            element={<CategoryItemPage categoryName={"Fruits"} />}
           />
           <Route
             path="/categories/electronics"
-            element={<CategoryItemPage currentName={"Electronics"} />}
+            element={<CategoryItemPage categoryName={"Electronics"} />}
           />
           <Route
             path="/categories/others"
-            element={<CategoryItemPage currentName={"Others"} />}
+            element={<CategoryItemPage categoryName={"Others"} />}
           />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NoMatch />} />
