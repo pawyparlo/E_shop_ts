@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Books",
+    "description": "Our books offer",
+    "imgUrl": "/imgs/book.jpg"
+  },
+  {
+    "name": "Electronics",
+    "description": "Our Electronics offer",
+    "imgUrl": "/imgs/computer.jpg"
+  },
+  {
+    "name": "Fruits",
+    "description": "See our fruits",
+    "imgUrl": "/imgs/banana.jpg"
+  },
+  {
+    "name": "Others",
+    "description": "Other items we have",
+    "imgUrl": "/imgs/car.jpg"
+  }
+]
