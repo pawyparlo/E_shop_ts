@@ -110,7 +110,7 @@ export const ShoppingCartProvider = ({
         closeCart,
         cartItems,
         cartQuantity,
-        setIsOpen
+        setIsOpen,
       }}
     >
       {children}

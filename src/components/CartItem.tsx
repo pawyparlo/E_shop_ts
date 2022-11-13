@@ -1,10 +1,9 @@
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { Stack, Button } from "react-bootstrap";
-import storeItems from "../data/items.json";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { MEDIA_ENDPOINT } from "../App";
 
-type CartItemProps = {
+export type CartItemProps = {
   id: number;
   name: string;
   price: number;

@@ -1,13 +1,11 @@
-// import categoryItem from "../../data/categories.json";
 import { Col, Row } from "react-bootstrap";
 import { CategoryItem } from "../../components/CategoryItem";
-import { useQuery } from "@apollo/client";
-import { GET_CATEGORIES, GET_PRODUCTS } from "../../services/graphql";
 import { useCategories } from "../../context/CategoriesContext";
 
 export const Store = () => {
   const { categoriesData, categoriesError, categoriesLoading } =
     useCategories();
+
   if (categoriesLoading) return <div>Loading...</div>;
   if (categoriesError) return <div>Error...</div>;
 

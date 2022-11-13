@@ -1,6 +1,6 @@
 import { Button, Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import { formatCurrency } from "../utilities/formatCurrency";
+import { getTotalPrice } from "../utilities/getTotalPrice";
 import { CartItem } from "./CartItem";
 import { useNavigate } from "react-router";
 
@@ -15,15 +15,7 @@ export const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
 
   const submitOrder = () => {
     setIsOpen(false);
-    navigate("submit")
-  }
-
-  const getTotalPrice = () => {
-    return formatCurrency(
-      cartItems.reduce((total, cartItem) => {
-        return total + (cartItem.price || 0) * cartItem.quantity;
-      }, 0)
-    );
+    navigate("submit");
   };
 
   return (
@@ -36,8 +28,12 @@ export const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
           {cartItems.map((item) => (
             <CartItem key={item.id} {...item} />
           ))}
-          <div className="ms-auto fw-bold fs-5">Total {getTotalPrice()}</div>
-          <Button variant="primary" onClick={submitOrder}>Order</Button>
+          <div className="ms-auto fw-bold fs-5">
+            Total {getTotalPrice(cartItems)}
+          </div>
+          <Button variant="primary" onClick={submitOrder}>
+            Order
+          </Button>
         </Stack>
       </Offcanvas.Body>
     </Offcanvas>
