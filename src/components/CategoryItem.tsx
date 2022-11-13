@@ -1,17 +1,13 @@
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
-type CategoryItemProps = {
-  name: string;
-  description: string;
-  imgUrl: string;
-};
+import { CategoryProps } from "../context/CategoriesContext";
+import { MEDIA_ENDPOINT } from "../App";
 
 export const CategoryItem = ({
   name,
-  description,
-  imgUrl,
-}: CategoryItemProps) => {
+  // description,
+  image,
+}: CategoryProps) => {
   const navigate = useNavigate();
 
   return (
@@ -20,11 +16,12 @@ export const CategoryItem = ({
         variant="top"
         height="200px"
         style={{ objectFit: "cover" }}
-        src={imgUrl}
+        // For now hardcoded
+        src={`${MEDIA_ENDPOINT}${image}`}
       />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
-        <Card.Text>{description}</Card.Text>
+        {/* <Card.Text>{description}</Card.Text> */}
         <Button
           className="w-100"
           variant="primary"

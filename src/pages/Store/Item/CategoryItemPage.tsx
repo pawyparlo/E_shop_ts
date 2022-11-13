@@ -1,19 +1,28 @@
 import { Col, Row, Button } from "react-bootstrap";
 import { StoreItem } from "../../../components/StoreItem";
 import { useNavigate } from "react-router-dom";
-import storeItems from "../../../data/items.json";
+import { useQuery } from "@apollo/client";
+import { GET_PRODUCT_BY_CATEGORY_NAME } from "../../../services/graphql";
 
 type CategoryItemPageProps = {
   categoryName: string | null;
 };
+// TODO Type Query
 
 export const CategoryItemPage = ({ categoryName }: CategoryItemPageProps) => {
-  const categoryItems = storeItems.filter(
-    ({ category }) => category === categoryName
-  );
-
   const navigate = useNavigate();
+  const {
+    data: productsData,
+    loading: productsLoading,
+    error: productsError,
+  } = useQuery(GET_PRODUCT_BY_CATEGORY_NAME, {
+    variables: {
+      input: categoryName,
+    },
+  });
 
+  if (productsLoading) return <div>Loading...</div>;
+  if (productsError) return <div>Error...</div>;
   return (
     <>
       <div className="d-flex justify-content-between align-items-center">
@@ -28,7 +37,7 @@ export const CategoryItemPage = ({ categoryName }: CategoryItemPageProps) => {
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-arrow-return-left"
+            className="bi bi-arrow-return-left"
             viewBox="0 0 16 16"
           >
             <path
@@ -39,7 +48,7 @@ export const CategoryItemPage = ({ categoryName }: CategoryItemPageProps) => {
         </Button>
       </div>
       <Row md={2} xs={1} lg={3} className="g-3">
-        {categoryItems.map((item) => (
+        {productsData?.productsByCategory.map((item: any) => (
           <Col key={item.id}>
             <StoreItem {...item} />
           </Col>
