@@ -2,7 +2,6 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { Navbar } from "./components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
-import { CategoryItemPage } from "./pages/Store/Item/CategoryItemPage";
 import { CategoriesProvider } from "./context/CategoriesContext";
 import { Router } from "./Router";
 

@@ -40,7 +40,10 @@ export const StoreItem = ({ id, name, price, image }: StoreItemProps) => {
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (
-            <Button className="w-100" onClick={() => increaseCartQuantity(id)}>
+            <Button
+              className="w-100"
+              onClick={() => increaseCartQuantity(id, name, price, image)}
+            >
               + Add to Cart
             </Button>
           ) : (
@@ -55,7 +58,11 @@ export const StoreItem = ({ id, name, price, image }: StoreItemProps) => {
                   in cart
                 </div>
 
-                <Button onClick={() => increaseCartQuantity(id)}>+</Button>
+                <Button
+                  onClick={() => increaseCartQuantity(id, name, price, image)}
+                >
+                  +
+                </Button>
               </div>
               <div
                 className="d-flex align-items-center justify-content-center"

@@ -35,42 +35,19 @@ export const GET_PRODUCT_BY_ID = gql`
 `;
 
 export const GET_PRODUCT_BY_CATEGORY_NAME = gql`
+  ${ProductFragment}
   query getProductByCategoryName($input: String!) {
     productsByCategory(categoryName: $input) {
-      id
-      category {
-        name
-      }
-      name
-      image
-      description
-      price
-      available
+      ...ProductFragment
     }
   }
 `;
 
-// export const GET_PRODUCTS = gql`
-//   ${ProductFragment}
-//   query getProduct($productId: ID!) {
-//     products {
-//       ...ProductFragment
-//     }
-//   }
-// `;
-
 export const GET_PRODUCTS = gql`
+  ${ProductFragment}
   query getProduct {
     products {
-      id
-      category {
-        name
-      }
-      name
-      image
-      description
-      price
-      available
+      ...ProductFragment
     }
   }
 `;

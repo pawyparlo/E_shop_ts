@@ -1,21 +1,27 @@
-import { Offcanvas, Stack } from "react-bootstrap";
+import { Button, Offcanvas, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 import { CartItem } from "./CartItem";
-import storeItems from "../data/items.json";
+import { useNavigate } from "react-router";
 
 type ShoppingCartProps = {
   isOpen: boolean;
 };
 
 export const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
-  const { closeCart, cartItems } = useShoppingCart();
+  const { closeCart, cartItems, setIsOpen } = useShoppingCart();
+
+  const navigate = useNavigate();
+
+  const submitOrder = () => {
+    setIsOpen(false);
+    navigate("submit")
+  }
 
   const getTotalPrice = () => {
     return formatCurrency(
       cartItems.reduce((total, cartItem) => {
-        const item = storeItems.find((i) => i.id === cartItem.id);
-        return total + (item?.price || 0) * cartItem.quantity;
+        return total + (cartItem.price || 0) * cartItem.quantity;
       }, 0)
     );
   };
@@ -31,6 +37,7 @@ export const ShoppingCart = ({ isOpen }: ShoppingCartProps) => {
             <CartItem key={item.id} {...item} />
           ))}
           <div className="ms-auto fw-bold fs-5">Total {getTotalPrice()}</div>
+          <Button variant="primary" onClick={submitOrder}>Order</Button>
         </Stack>
       </Offcanvas.Body>
     </Offcanvas>
