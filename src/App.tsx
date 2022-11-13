@@ -1,42 +1,24 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import React from "react";
 import { Container } from "react-bootstrap";
-import { Home } from "./pages/Home";
-import { About } from "./pages/About";
-import { Store } from "./pages/Store/Store";
-import { NoMatch } from "./pages/NoMatch";
 import { Navbar } from "./components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import { CategoryItemPage } from "./pages/Store/Item/CategoryItemPage";
+import { CategoriesProvider } from "./context/CategoriesContext";
+import { Router } from "./Router";
+
+export const MEDIA_ENDPOINT = "http://localhost:8000/media/";
+
+// TODO: Rethink context structure
 
 function App() {
   return (
     <ShoppingCartProvider>
-      <Navbar />
-      <Container className="mb-4">
-        <Routes>
-          <Route index path="/" element={<Home />} />
-          <Route path="/categories" element={<Store />} />
-          <Route
-            path="/categories/books"
-            element={<CategoryItemPage categoryName={"Books"} />}
-          />
-          <Route
-            path="/categories/fruits"
-            element={<CategoryItemPage categoryName={"Fruits"} />}
-          />
-          <Route
-            path="/categories/electronics"
-            element={<CategoryItemPage categoryName={"Electronics"} />}
-          />
-          <Route
-            path="/categories/others"
-            element={<CategoryItemPage categoryName={"Others"} />}
-          />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<NoMatch />} />
-        </Routes>
-      </Container>
+      <CategoriesProvider>
+        <Navbar />
+        <Container className="mb-4">
+          <Router />
+        </Container>
+      </CategoriesProvider>
     </ShoppingCartProvider>
   );
 }

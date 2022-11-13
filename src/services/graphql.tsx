@@ -25,11 +25,27 @@ export const OrderFragment = gql`
   }
 `;
 
-export const GET_PRODUCT = gql`
+export const GET_PRODUCT_BY_ID = gql`
   ${ProductFragment}
   query getProduct($productId: ID!) {
     product(productId: $productId) {
       ...ProductFragment
+    }
+  }
+`;
+
+export const GET_PRODUCT_BY_CATEGORY_NAME = gql`
+  query getProductByCategoryName($input: String!) {
+    productsByCategory(categoryName: $input) {
+      id
+      category {
+        name
+      }
+      name
+      image
+      description
+      price
+      available
     }
   }
 `;

@@ -1,15 +1,16 @@
 import { Card, Button } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
+import { MEDIA_ENDPOINT } from "../App";
 
 type StoreItemProps = {
   id: number;
   name: string;
   price: number;
-  imgUrl: string;
+  image: string;
 };
 
-export const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
+export const StoreItem = ({ id, name, price, image }: StoreItemProps) => {
   const {
     getItemQuantity,
     increaseCartQuantity,
@@ -23,7 +24,7 @@ export const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
     <Card className="h-100">
       <Card.Img
         variant="top"
-        src={imgUrl}
+        src={`${MEDIA_ENDPOINT}${image}`}
         height="200px"
         style={{
           objectFit: "cover",
